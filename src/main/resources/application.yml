@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: transaction-service
+server:
+  port: ${PORT:8090}
+web3j:
+  client-address: http://13.209.119.11:8545 #https://scan.ehd.io/rpc.php #http://13.209.119.11:8545 #http://127.0.0.1:7545
+  admin-client: true
