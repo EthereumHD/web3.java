@@ -46,12 +46,27 @@ public class BlockchainController {
     }
 
     @GetMapping("/getBlockByNumber")
-    public Object getBlockByNumber(@RequestParam BigInteger hash) throws IOException {
-        return service.getBlockByNumber(hash);
+    public Object getBlockByNumber(@RequestParam BigInteger number) throws IOException {
+        return service.getBlockByNumber(number);
     }
 
     @GetMapping("/getBlockByHash")
     public Object getBlockByHash(@RequestParam String hash) throws IOException {
         return service.getBlockByHash(hash);
+    }
+
+    @GetMapping("/blockNumber")
+    public Object blockNumber() throws IOException {
+        return service.blockNumber();
+    }
+
+    @GetMapping("/ethGasPrice")
+    public Object ethGasPrice() throws IOException {
+        return service.ethGasPrice();
+    }
+
+    @PostMapping("/ethEstimateGas")
+    public Object ethEstimateGas(@RequestBody BlockchainTransaction transaction) throws IOException {
+        return service.ethEstimateGas(transaction);
     }
 }

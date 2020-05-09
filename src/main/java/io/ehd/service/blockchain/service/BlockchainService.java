@@ -90,13 +90,29 @@ public class BlockchainService {
         return ethTransaction.getResult();
     }
 
-    public Object getBlockByNumber(BigInteger hash) throws IOException {
-        EthBlock ethBlock = admin.ethGetBlockByNumber(DefaultBlockParameter.valueOf(hash), true).send();
+    public Object getBlockByNumber(BigInteger number) throws IOException {
+        EthBlock ethBlock = admin.ethGetBlockByNumber(DefaultBlockParameter.valueOf(number), true).send();
         return ethBlock.getResult();
     }
 
     public Object getBlockByHash(String hash) throws IOException {
         EthBlock ethBlock = admin.ethGetBlockByHash(hash, true).send();
         return ethBlock.getResult();
+    }
+
+    public Object blockNumber() throws IOException {
+        EthBlockNumber blockNumber = admin.ethBlockNumber().send();
+        return blockNumber.getResult();
+    }
+
+    public Object ethGasPrice() throws IOException {
+        EthGasPrice gasPrice = admin.ethGasPrice().send();
+        return gasPrice.getResult();
+    }
+
+    public Object ethEstimateGas(BlockchainTransaction trx) throws IOException {
+        Transaction transaction = Transaction.createEthCallTransaction(trx.getFromAddr(),trx.getToAddr(),trx.getId());
+        EthEstimateGas estimateGas = admin.ethEstimateGas(transaction).send();
+        return estimateGas.getResult();
     }
 }
