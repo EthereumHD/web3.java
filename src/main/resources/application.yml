@@ -4,5 +4,5 @@ spring:
 server:
   port: ${PORT:8090}
 web3j:
-  client-address: http://127.0.0.1:7545
+  client-address: http://127.0.0.1:8545
   admin-client: true
